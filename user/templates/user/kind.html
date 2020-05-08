@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block right-panel-content %}
+<h3 style="text-align:center">{{ i.tags }}</h3>
+    {% if not movies %}
+        <h2 class="text-center">没有电影</h2>
+    {% endif %}
+{% for movie in movies %}
+<div class="container-fluid">
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+                                <img class="img-thumbnail movie-image" alt="140x140" src="/media/movie_images/{{ movie.pic }}" width=140px
+                         height=140px/>
+		</div>
+		<div class="col-md-7 column">
+			<h3>
+				<a href="{% url 'movie' movie.id %}">	{{ movie.name }}</a>
+			</h3>
+			<p>{{ i.intro | slice:":100" }}......</p>
+			<p>浏览量:{{ movie.num }}</p>
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
